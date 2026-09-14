@@ -1,5 +1,9 @@
 # راهنمای Jira MCP 🛠️
 
+**[🌐 نسخه وب دوزبانه / Bilingual Web Version](https://ali-m07.github.io/jira-mcp-guide/)** — با رابط کاربری و سوییچ فارسی/انگلیسی · With a polished UI and a FA/EN toggle
+
+> **English:** A bilingual Persian/English guide to connecting Jira to AI assistants ([CC], Claude Desktop, Cursor, …) via the **Model Context Protocol** — zero custom code required. Open the [web version](https://ali-m07.github.io/jira-mcp-guide/) for the full interactive guide.
+
 آموزش فارسیِ اتصال Jira به دستیارهای هوش مصنوعی (Claude Code، Claude Desktop، Cursor و …) با استفاده از پروتکل **MCP** — بدون نیاز به نوشتن هیچ کدی.
 
 > MCP چیست؟ [Model Context Protocol](https://modelcontextprotocol.io) یک استاندارد باز است که به مدل‌های زبانی اجازه می‌دهد به ابزارهای خارجی — مثل Jira — وصل شوند.

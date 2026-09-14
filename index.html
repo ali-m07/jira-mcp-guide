@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jira MCP Guide | راهنمای Jira MCP</title>
+<meta name="description" content="Bilingual Persian/English guide: connect Jira to AI assistants via MCP. راهنمای دوزبانه اتصال جیرا به دستیارهای هوش مصنوعی با MCP">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0f17; --bg2:#0f1522; --card:#121a2b; --card2:#16203322;
+  --border:#233047; --text:#e8eef7; --muted:#8fa0b8;
+  --accent:#4c8dff; --accent2:#22d3ee; --green:#34d399;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(76,141,255,.14), transparent 60%),
+    radial-gradient(700px 400px at 10% 110%, rgba(34,211,238,.08), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Vazirmatn','Inter',system-ui,sans-serif;
+  line-height:1.8; min-height:100vh;
+}
+html[dir=ltr] body{font-family:'Inter','Vazirmatn',system-ui,sans-serif}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(11,15,23,.75);border-bottom:1px solid var(--border)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;text-decoration:none;color:var(--text)}
+.brand .dot{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:14px}
+.nav-links{display:flex;align-items:center;gap:18px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.lang-btn{cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:.85rem;padding:7px 14px;border-radius:99px;transition:border-color .2s}
+.lang-btn:hover{border-color:var(--accent)}
+
+/* hero */
+header{padding:90px 0 70px;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:var(--accent2);
+  border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.07);
+  padding:5px 14px;border-radius:99px;margin-bottom:24px}
+.badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.3;letter-spacing:-.02em}
+h1 .grad{background:linear-gradient(120deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{color:var(--muted);max-width:620px;margin:20px auto 36px;font-size:1.05rem}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{padding:12px 26px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.95rem;transition:transform .15s, box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#3b6fe0);color:#fff;box-shadow:0 8px 24px rgba(76,141,255,.25)}
+.btn-ghost{border:1px solid var(--border);color:var(--text);background:var(--card)}
+
+/* sections */
+section{padding:56px 0}
+.sec-title{font-size:1.6rem;font-weight:800;margin-bottom:8px}
+.sec-desc{color:var(--muted);margin-bottom:32px;max-width:640px}
+.grid{display:grid;gap:18px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:border-color .2s, transform .2s}
+.card:hover{border-color:#35507d;transform:translateY(-3px)}
+.card .icon{font-size:1.6rem;margin-bottom:14px;display:block}
+.card h3{font-size:1.05rem;margin-bottom:8px;font-weight:700}
+.card p{color:var(--muted);font-size:.92rem}
+.num{font-family:var(--mono);font-size:.75rem;color:var(--accent2);letter-spacing:.1em}
+
+/* tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:9px 18px;border-radius:10px;border:1px solid var(--border);background:var(--card);
+  color:var(--muted);cursor:pointer;font-family:inherit;font-size:.88rem;transition:all .2s}
+.tab:hover{color:var(--text)}
+.tab.active{background:rgba(76,141,255,.14);border-color:var(--accent);color:var(--text)}
+.pane{display:none;animation:fadein .25s ease}
+.pane.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* code */
+.code{background:#0a0e16;border:1px solid var(--border);border-radius:12px;overflow:hidden;direction:ltr;text-align:left}
+.code .bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.code .bar i{width:10px;height:10px;border-radius:50%;display:block}
+.code .bar .r{background:#f87171}.code .bar .y{background:#fbbf24}.code .bar .g{background:#34d399}
+.code .bar span{margin-inline-start:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.code pre{padding:18px;overflow-x:auto;font-family:var(--mono);font-size:.84rem;line-height:1.7;color:#c9d6ee}
+.code .cm{color:#5b6b85}.code .cmd{color:#7dd3fc}.code .arg{color:#a5b4fc}.code .str{color:#86efac}
+.note{display:flex;gap:10px;margin-top:14px;font-size:.88rem;color:var(--muted)}
+.note b{color:var(--text)}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:560px}
+th{background:var(--bg2);text-align:start;padding:13px 18px;font-weight:700;color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:13px 18px;border-top:1px solid var(--border);color:var(--muted)}
+td:first-child{color:var(--text)}
+code.inline{font-family:var(--mono);font-size:.8rem;background:var(--bg2);border:1px solid var(--border);
+  padding:2px 8px;border-radius:6px;color:var(--accent2);direction:ltr;unicode-bidi:embed;display:inline-block}
+
+/* footer */
+footer{border-top:1px solid var(--border);padding:34px 0;text-align:center;color:var(--muted);font-size:.86rem}
+footer a{color:var(--accent2);text-decoration:none}
+
+@media(max-width:640px){header{padding:60px 0 40px}section{padding:40px 0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="brand" href="#"><span class="dot">⚡</span><span data-fa="راهنمای Jira MCP" data-en="Jira MCP Guide">راهنمای Jira MCP</span></a>
+    <div class="nav-links">
+      <a href="#quickstart" data-fa="شروع سریع" data-en="Quick Start">شروع سریع</a>
+      <a href="#examples" data-fa="نمونه‌کارها" data-en="Examples">نمونه‌کارها</a>
+      <a href="#security" data-fa="امنیت" data-en="Security">امنیت</a>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="container">
+  <div class="badge"><span class="pulse"></span><span data-fa="بدون نیاز به کدنویسی" data-en="Zero code required">بدون نیاز به کدنویسی</span></div>
+  <h1><span data-fa="جیرا را به هوش مصنوعی" data-en="Connect Jira to your">جیرا را به هوش مصنوعی</span><br><span class="grad" data-fa="وصل کن" data-en="AI assistant">وصل کن</span></h1>
+  <p class="subtitle" data-fa="با چند دستور ساده، دستیار هوش مصنوعی‌ات را از طریق پروتکل MCP به Jira وصل کن: جستجوی تیکت با زبان طبیعی، خلاصه‌سازی، اولویت‌بندی و گزارش‌گیری — بدون نوشتن حتی یک خط کد." data-en="Wire your AI assistant to Jira via MCP with a few simple commands: natural-language ticket search, summaries, prioritization and reporting — without writing a single line of code.">…</p>
+  <div class="hero-btns">
+    <a class="btn btn-primary" href="#quickstart" data-fa="شروع کن ↓" data-en="Get Started ↓">شروع کن ↓</a>
+    <a class="btn btn-ghost" href="https://github.com/ali-m07/jira-mcp-guide" target="_blank">GitHub ↗</a>
+  </div>
+</header>
+
+<section class="container">
+  <div class="grid grid-2">
+    <div class="card">
+      <span class="icon">🔌</span>
+      <h3 data-fa="MCP چیست؟" data-en="What is MCP?">MCP چیست؟</h3>
+      <p data-fa="Model Context Protocol یک استاندارد باز است که به مدل‌های زبانی اجازه می‌دهد به ابزارهای خارجی — مثل Jira — وصل شوند. ابزارهای آماده‌ای مثل mcp-atlassian این پل را از قبل ساخته‌اند." data-en="Model Context Protocol is an open standard that lets language models plug into external tools — like Jira. Ready-made servers such as mcp-atlassian have already built that bridge.">…</p>
+    </div>
+    <div class="card">
+      <span class="icon">🛠️</span>
+      <h3 data-fa="این راهنما چیست؟" data-en="What is this guide?">این راهنما چیست؟</h3>
+      <p data-fa="یک راهنمای دوزبانه برای استفاده از سرور متن‌باز sooperset/mcp-atlassian در کلاینت‌های رایج: Claude Code، Claude Desktop، Cursor و VS Code. فقط کانفیگ — نه کد اختصاصی." data-en="A bilingual guide for using the open-source sooperset/mcp-atlassian server in common clients: Claude Code, Claude Desktop, Cursor and VS Code. Configuration only — no custom code.">…</p>
+    </div>
+  </div>
+</section>
+
+<section id="quickstart" class="container">
+  <h2 class="sec-title" data-fa="🚀 شروع سریع" data-en="🚀 Quick Start">🚀 شروع سریع</h2>
+  <p class="sec-desc" data-fa="پیش‌نیازها: Python 3.10+ (برای uvx) یا Docker، یک اکانت Jira، و یک دستیار هوش مصنوعی پشتیبانِ MCP. یکی از سه روش زیر را انتخاب کن:" data-en="Prerequisites: Python 3.10+ (for uvx) or Docker, a Jira account, and an MCP-capable AI assistant. Pick one of the three methods below:">…</p>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showPane(0)"><span data-fa="۱ · Jira Cloud + API Token" data-en="1 · Jira Cloud + API Token">۱ · Jira Cloud + API Token</span></button>
+    <button class="tab" onclick="showPane(1)"><span data-fa="۲ · Data Center + PAT" data-en="2 · Data Center + PAT">۲ · Data Center + PAT</span></button>
+    <button class="tab" onclick="showPane(2)"><span data-fa="۳ · سرور ریموت (HTTP)" data-en="3 · Remote Server (HTTP)">۳ · سرور ریموت (HTTP)</span></button>
+  </div>
+
+  <div class="pane active">
+    <div class="code"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>bash</span></div>
+<pre><span class="cm"># 1) Create a token at id.atlassian.com → Security → API Tokens</span>
+<span class="cm"># 2) Add the connector (Claude Code example):</span>
+
+<span class="cmd">claude mcp add</span> <span class="arg">--scope user</span> jira \
+  <span class="arg">--env</span> <span class="str">JIRA_URL=https://your-company.atlassian.net</span> \
+  <span class="arg">--env</span> <span class="str">JIRA_USERNAME=you@company.com</span> \
+  <span class="arg">--env</span> <span class="str">JIRA_API_TOKEN=&lt;API_TOKEN&gt;</span> \
+  <span class="arg">--</span> uvx mcp-atlassian</pre></div>
+    <div class="note"><span>💡</span><p><span data-fa="برای Claude Desktop، Cursor یا VS Code، معادل JSON هر کلاینت در" data-en="For Claude Desktop, Cursor or VS Code, the JSON equivalent for each client is in">برای Claude Desktop، Cursor یا VS Code، معادل JSON هر کلاینت در</span> <a href="https://github.com/ali-m07/jira-mcp-guide/blob/main/docs/clients.md" style="color:var(--accent2)">docs/clients.md</a> <span data-fa="آمده است." data-en=".">آمده است.</span></p></div>
+  </div>
+
+  <div class="pane">
+    <div class="code"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>bash</span></div>
+<pre><span class="cm"># 1) In Jira: Profile → Personal Access Tokens → Create</span>
+<span class="cm"># 2) Add the connector:</span>
+
+<span class="cmd">claude mcp add</span> <span class="arg">--scope user</span> jira \
+  <span class="arg">--env</span> <span class="str">JIRA_URL=https://jira.your-company.com</span> \
+  <span class="arg">--env</span> <span class="str">JIRA_PERSONAL_ACCESS_TOKEN=&lt;PAT&gt;</span> \
+  <span class="arg">--</span> uvx mcp-atlassian</pre></div>
+    <div class="note"><span>🔐</span><p><span data-fa="PAT پایدارتر از OAuth است و برای سرورهای شرکتی Data Center استانداردِ رایج است." data-en="A PAT is more stable than OAuth and is the common standard for corporate Data Center servers.">PAT پایدارتر از OAuth است و برای سرورهای شرکتی Data Center استانداردِ رایج است.</span></p></div>
+  </div>
+
+  <div class="pane">
+    <div class="code"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>bash</span></div>
+<pre><span class="cm"># If your team already hosts an mcp-atlassian server:</span>
+
+<span class="cmd">claude mcp add</span> <span class="arg">--scope user</span> <span class="arg">--transport http</span> jira \
+  <span class="str">https://mcp.your-company.com/mcp</span></pre></div>
+    <div class="note"><span>🌐</span><p><span data-fa="در این حالت هیچ چیزی لوکال نصب نمی‌شود؛ فقط آدرس سرور را می‌دهی. اتصال با OAuth مرورگر یا هدر PAT بسته به راه‌اندازی تیم انجام می‌شود." data-en="Nothing gets installed locally; you only provide the server URL. Auth happens via browser OAuth or a PAT header, depending on your team's setup.">در این حالت هیچ چیزی لوکال نصب نمی‌شود؛ فقط آدرس سرور را می‌دهی. اتصال با OAuth مرورگر یا هدر PAT بسته به راه‌اندازی تیم انجام می‌شود.</span></p></div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="code"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>bash</span></div>
+<pre><span class="cm"># Verify — a ✓ Connected mark means you are done</span>
+<span class="cmd">claude mcp list</span>
+
+<span class="cm"># Inside your assistant, list available tools:</span>
+/mcp</pre></div>
+</section>
+
+<section id="examples" class="container">
+  <h2 class="sec-title" data-fa="💬 نمونه‌کارها" data-en="💬 Examples">💬 نمونه‌کارها</h2>
+  <p class="sec-desc" data-fa="بعد از اتصال، با زبان طبیعی حرف بزن — مدل خودش JQL و ابزار مناسب را صدا می‌زند." data-en="Once connected, just talk naturally — the model picks the right tools and builds the JQL for you.">…</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th data-fa="می‌گویی" data-en="You ask">می‌گویی</th>
+        <th data-fa="پشت صحنه" data-en="Under the hood">پشت صحنه</th>
+      </tr></thead>
+      <tbody>
+        <tr><td data-fa="«تیکت‌های باز من را پیدا کن»" data-en="“Find my open tickets”">«تیکت‌های باز من را پیدا کن»</td><td><code class="inline">jira_search</code> · <code class="inline">assignee = currentUser() AND status != Done</code></td></tr>
+        <tr><td data-fa="«خلاصه‌ی PROJ-1234 و کامنت‌هایش را بده»" data-en="“Summarize PROJ-1234 and its comments”">«خلاصه‌ی PROJ-1234 و کامنت‌هایش را بده»</td><td><code class="inline">jira_get_issue</code> + <code class="inline">jira_get_comments</code></td></tr>
+        <tr><td data-fa="«باگ‌های اسپرینت جاری را اولویت‌بندی کن»" data-en="“Prioritize current sprint bugs”">«باگ‌های اسپرینت جاری را اولویت‌بندی کن»</td><td><code class="inline">jira_search</code> <span data-fa="+ تحلیل مدل" data-en="+ model analysis">+ تحلیل مدل</span></td></tr>
+        <tr><td data-fa="«با استاندارد پروژه یک باگ‌ریپورت بنویس»" data-en="“Write a bug report per our template”">«با استاندارد پروژه یک باگ‌ریپورت بنویس»</td><td><code class="inline">jira_create_issue</code> <span data-fa="(حالت read/write)" data-en="(read/write mode)">(حالت read/write)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="security" class="container">
+  <h2 class="sec-title" data-fa="🔒 امنیت" data-en="🔒 Security">🔒 امنیت</h2>
+  <div class="grid grid-3">
+    <div class="card"><span class="icon">🗝️</span><h3 data-fa="توکن لوکال" data-en="Local-only tokens">توکن لوکال</h3><p data-fa="توکن‌ها فقط روی سیستم خودت می‌مانند — متغیر محیطی یا کش OAuth در ~/.mcp-auth/." data-en="Tokens stay on your machine only — env vars or the OAuth cache in ~/.mcp-auth/.">…</p></div>
+    <div class="card"><span class="icon">👤</span><h3 data-fa="دسترسی خودت" data-en="Your own permissions">دسترسی خودت</h3><p data-fa="هر درخواست با دسترسی‌های اکانت خودت اجرا می‌شود؛ چیزی بیش از دسترسی‌ات نمی‌بینی." data-en="Every request runs with your account's permissions — you never see more than you already can.">…</p></div>
+    <div class="card"><span class="icon">📖</span><h3 data-fa="حالت فقط‌خواندن" data-en="Read-only mode">حالت فقط‌خواندن</h3><p data-fa="اگر فقط جستجو و خواندن کافی است، سرور را با READ_ONLY اجرا کن تا هیچ تغییری ممکن نباشد." data-en="If search-and-read is all you need, run the server with READ_ONLY so nothing can be modified.">…</p></div>
+  </div>
+</section>
+
+<section class="container">
+  <h2 class="sec-title" data-fa="🧯 عیب‌یابی سریع" data-en="🧯 Quick Troubleshooting">🧯 عیب‌یابی سریع</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th data-fa="مشکل" data-en="Problem">مشکل</th>
+        <th data-fa="راه‌حل" data-en="Fix">راه‌حل</th>
+      </tr></thead>
+      <tbody>
+        <tr><td data-fa="اتصال ناموفق (✗ Failed to connect)" data-en="✗ Failed to connect">✗ Failed to connect</td><td data-fa="توکن را دوباره بساز؛ کش را پاک کن: rm -rf ~/.mcp-auth/" data-en="Regenerate the token; clear the cache: rm -rf ~/.mcp-auth/">…</td></tr>
+        <tr><td><code class="inline">uvx: command not found</code></td><td data-fa="uv را نصب کن: pip install uv یا brew install uv" data-en="Install uv: pip install uv or brew install uv">…</td></tr>
+        <tr><td data-fa="خطای 401 با PAT" data-en="401 error with a PAT">…</td><td data-fa="PAT منقضی شده؛ توکن جدید بساز و کانفیگ را به‌روز کن." data-en="The PAT expired; create a new one and update the config.">…</td></tr>
+        <tr><td data-fa="نتیجه‌ی جستجو خالی است" data-en="Search returns nothing">…</td><td data-fa="دسترسی پروژه را چک کن؛ با پروژه‌ای که دسترسی داری امتحان کن." data-en="Check project permissions; try a project you can access.">…</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p data-fa="ساخته‌شده بر پایه‌ی پروژه‌ی متن‌باز" data-en="Built on the open-source project">ساخته‌شده بر پایه‌ی پروژه‌ی متن‌باز
+  <a href="https://github.com/sooperset/mcp-atlassian" target="_blank">sooperset/mcp-atlassian</a> ·
+  <a href="https://github.com/ali-m07/jira-mcp-guide" target="_blank" data-fa="ریپوی راهنما" data-en="Guide repo">ریپوی راهنما</a> · MIT</p>
+</footer>
+
+<script>
+let lang = localStorage.getItem('lang') || 'fa';
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'fa') ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-fa]').forEach(el => {
+    el.innerHTML = el.dataset[lang];
+  });
+  document.getElementById('langBtn').textContent = (lang === 'fa') ? 'EN' : 'فا';
+}
+function toggleLang(){
+  lang = (lang === 'fa') ? 'en' : 'fa';
+  localStorage.setItem('lang', lang);
+  applyLang();
+}
+function showPane(i){
+  document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active', idx===i));
+  document.querySelectorAll('.pane').forEach((p,idx)=>p.classList.toggle('active', idx===i));
+}
+applyLang();
+</script>
+</body>
+</html>
