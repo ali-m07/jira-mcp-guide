@@ -117,6 +117,12 @@ claude mcp list
 | [`docs/clients.md`](docs/clients.md) | تنظیم برای [CC]، Claude Desktop، Cursor و VS Code |
 | [`docs/jql-cheatsheet.md`](docs/jql-cheatsheet.md) | کوئری‌های JQL آماده |
 
+### 👤 درباره نویسنده
+
+**علی منصوری** — Solutions Architect با بیش از ۵ سال تجربه در معماری پلتفرم‌های cloud native، اتوماسیون سازمانی و هوش مصنوعی (LLM و RAG). در اسنپ، مالکیت معماری Jira سازمانی و اتوماسیون‌های LLM در حالت production را بر عهده داشته و سامانه‌هایی در خدمت بیش از ۱٬۰۰۰ کاربر داخلی طراحی کرده است. دانشجوی دکتری آینده‌پژوهی (دانشگاه تهران) و کارشناس ارشد MBA.
+
+- 🌐 [LinkedIn](https://linkedin.com/in/ali-mansouri-a7984215b) · [GitHub](https://github.com/ali-m07) · [ایمیل](mailto:ali.mansouri1998@gmail.com)
+
 ---
 
 ## 🇬🇧 English
@@ -220,6 +226,12 @@ Once connected, just talk naturally — the model picks the right tools and buil
 |---|---|
 | [`docs/clients.md`](docs/clients.md) | Setup for [CC], Claude Desktop, Cursor and VS Code |
 | [`docs/jql-cheatsheet.md`](docs/jql-cheatsheet.md) | Ready-made JQL queries |
+
+### 👤 About the Author
+
+**Ali Mansouri** — a Solutions Architect with 5+ years of experience in cloud native platforms, enterprise automation, and AI (LLMs & RAG). At Snapp, he owned the architecture of enterprise Jira and production LLM automation, building systems that serve 1,000+ internal users. PhD candidate in Futures Studies (University of Tehran) with an MBA.
+
+- 🌐 [LinkedIn](https://linkedin.com/in/ali-mansouri-a7984215b) · [GitHub](https://github.com/ali-m07) · [Email](mailto:ali.mansouri1998@gmail.com)
 
 ---
 
